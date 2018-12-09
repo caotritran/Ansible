@@ -1,0 +1,6 @@
+servername: tritran.com.vn
+user_name: tritran
+group_name: tritran
+database_name: wp_data
+user_database_name: wp-user
+user_database_pass: 123123123

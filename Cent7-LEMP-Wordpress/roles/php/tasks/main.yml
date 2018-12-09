@@ -1,0 +1,23 @@
+---
+- name: install repo remi
+  yum: 
+    name: http://rpms.remirepo.net/enterprise/remi-release-7.rpm
+    state: present
+
+- name: install php71 and lib dependencies
+  yum: name={{ item }} enablerepo="remi,remi-php71" state=present
+  with_items:
+    - php
+    - php-mysql
+    - php-fpm
+
+- name: rename www.conf file
+  command: mv /etc/php-fpm.d/www.conf /etc/php-fpm.d/www.conf.bak
+  ignore_errors: yes
+
+- name: copy config file handle socket php
+  template: src=www.conf.j2 dest=/etc/php-fpm.d/{{ servername }}.conf
+  
+- name: start php-fpm service
+  service: name=php-fpm state=started enabled=yes
+

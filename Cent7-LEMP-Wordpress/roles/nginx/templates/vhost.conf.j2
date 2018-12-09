@@ -1,0 +1,37 @@
+server {
+    listen 80;
+    server_name {{ servername }};
+    
+    root /home/{{ user_name }}/public_html;
+
+    index index.php;
+
+    # [ debug | info | notice | warn | error | crit | alert | emerg ]
+    access_log /var/log/nginx/domains/{{ servername }}.log main_ext;
+    error_log /var/log/nginx/domains/{{ servername }}.error.log warn;
+
+    location / {
+        try_files $uri $uri/ /index.php?$args;
+    }
+   
+    location ~ \.php$ {
+        try_files $uri =404;
+        fastcgi_split_path_info ^(.+\.php)(/.+)$;
+        fastcgi_pass unix:/var/run/php-fpm.{{ servername }}.sock;
+        fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+        fastcgi_param SCRIPT_NAME $fastcgi_script_name;
+        fastcgi_index index.php;
+        include fastcgi_params;
+
+        fastcgi_read_timeout 360s;
+        fastcgi_buffer_size 128k;
+        fastcgi_buffers 4 256k;
+        fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+    }
+
+    location ~ ^.+\.(jpeg|jpg|png|gif|bmp|ico|svg|css|js)$ {
+        expires 7d;
+    }
+
+}
+

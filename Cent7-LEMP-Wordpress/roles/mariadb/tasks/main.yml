@@ -1,0 +1,49 @@
+---
+
+- name: add repo mariadb
+  copy:
+    src: MariaDB.repo
+    dest: /etc/yum.repos.d/
+
+- name: install mariadb
+  yum: name={{ item }} state=present
+  with_items:
+    - MariaDB-server
+    - MariaDB-client
+
+- name: install the Python MySQLB module
+  yum: name={{ item }} state=present
+  with_items:
+    - python
+    - python-pip
+    - python-setuptools
+    - MySQL-python
+
+#- name: create user password file
+#  become: yes
+#  copy:
+#    src: my.cnf
+#    dest: /root/.my.cnf
+
+- name: create user password mysql
+  copy:
+    content:
+        "[client] user=root password=tritran123"
+    dest: /root/.my.cnf
+
+- name: start mariadb service
+  service: name=mariadb state=started
+
+
+- name: create database name
+  mysql_db:
+    name: '{{ database_name }}'
+    state: present
+
+- name: create user database
+  mysql_user:
+    name: '{{ user_database_name }}'
+    password: '{{ user_database_pass }}'
+    priv: '*.*:ALL'
+    state: present
+

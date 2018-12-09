@@ -1,0 +1,25 @@
+---
+
+- name: update all package
+  yum: name="*" state=latest
+
+- name: install epel-release
+  yum: name=epel-release state=present
+
+- name: install wget, zip, unzip, git
+  yum: name={{ item }} state=present
+  with_items:
+    - wget
+    - zip
+    - unzip
+    - git
+  #ignore_errors: yes
+
+- name: disable selinux in file config
+  lineinfile:
+    path: /etc/sysconfig/selinux
+    regexp: '^SELINUX='
+    line: 'SELINUX=disabled'
+
+- name: disable selinux command
+  shell: setenforce 0

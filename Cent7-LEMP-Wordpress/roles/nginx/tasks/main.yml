@@ -1,0 +1,49 @@
+---
+
+- name: install nginx
+  yum: name=nginx state=present
+
+- name: copy config file nginx
+  copy: src=nginx.conf dest=/etc/nginx/nginx.conf
+
+- name: create folder contains vhost
+  file:
+    path: /etc/nginx/conf.d
+    state: directory
+    mode: 755
+
+- name: copy template vhost
+  template:
+    src: vhost.conf.j2
+    dest: /etc/nginx/conf.d/{{ servername }}.conf
+
+- name: create user onwer web
+  user:
+    name: '{{ user_name }}'
+    home: '/home/{{ user_name }}'
+
+- name: create group owner web
+  group:
+    name: '{{ group_name }}'
+    state: present
+
+- name: create folder contains web source
+  file:
+    path: /home/{{ user_name }}/public_html
+    state: directory
+
+- name: create folder contains file log
+  file:
+    path: /var/log/nginx/domains
+    state: directory
+
+- name: change modify folder of user
+  file:
+    path: /home/{{ user_name }}
+    mode: 755
+    owner: '{{ user_name }}'
+    group: '{{ group_name }}'
+
+- name: start nginx service
+  service: name=nginx state=started enabled=yes
+

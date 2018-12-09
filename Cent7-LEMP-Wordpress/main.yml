@@ -1,0 +1,17 @@
+---
+- name: install wordpress on LEMP
+  hosts: appgroup 
+  become: yes
+  become_method: sudo
+
+  roles:
+    - dependencies
+    - nginx
+    - mariadb
+    - php
+    - wordpress
+
+  tasks:
+    - name: reboot all server
+      reboot:
+        reboot_timeout: 3600
