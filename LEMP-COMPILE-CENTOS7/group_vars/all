@@ -1,0 +1,33 @@
+---
+# name lib
+pcre: pcre-8.42.tar.gz
+openssl: openssl-1.0.2k.tar.gz
+zlib: zlib-1.2.11.tar.gz
+
+nginx: 	nginx-1.15.6.tar.gz
+nginx_name: nginx-1.15.6
+
+php7: php-7.3.0.tar.gz
+php_name: php-7.3.0
+
+source_dir: /root/src
+host_pass: 123123123
+user_ngx: nginx
+user_domain: hungtran
+group_domain: hungtran
+server_name: hungtran.net
+
+#user_domain: tritran
+#group_domain: tritran
+#server_name: tritran.com
+
+
+mysql_pass_root: 123123123
+mysql_database: phuongmai_data
+mysql_user: phuongmai_user
+mysql_pass: 123123
+
+#mysql_database: hungtran_data
+#mysql_user: hungtran_user
+#mysql_pass: 123123
+

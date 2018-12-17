@@ -1,0 +1,17 @@
+- name: LEMP Compile Nginx + PHP-FPM From Source + Mariadb + Wordpress
+  hosts: appgroup
+  become: yes
+  become_method: sudo
+  
+  roles:
+    - Dependencies
+    - Nginx
+    - Vhost
+    - PHP-FPM
+    - Mariadb
+    - Wordpress
+
+  tasks:
+    - name: reboot all server
+      reboot:
+        reboot_timeout: 3600
