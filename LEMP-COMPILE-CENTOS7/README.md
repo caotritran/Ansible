@@ -8,7 +8,7 @@ LEMP compile with Nginx fastcgi caching + php-fpm + mariadb + wordpress + anothe
 
 `install:` **ansible-playbook main.yml -i hosts --skip-tags "template-2, template-phpfpm"**
 
-`create new vhost:`
+`create new vhost seconds:`
 edit file group_vars/all with variables as:
 - user_domain 
 - server_name
