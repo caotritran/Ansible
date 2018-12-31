@@ -1,0 +1,29 @@
+---
+- name: add repo mariadb 10.2
+  template:
+    src: MariaDB.repo.j2
+    dest: /etc/yum.repos.d/MariaDB.repo
+
+- name: install mariadb 10.2
+  yum: name={{ item }} state=present
+  with_items:
+    - MariaDB-server
+    - MariaDB-client
+    - MariaDB-devel
+
+- name: install the Python MySQLB module
+  yum: name={{ item }} state=present
+  with_items:
+    - python
+    - python-pip
+    - python-setuptools
+    - MySQL-python
+
+- name: create user password mysql
+  copy:
+    content:
+        "[client] user=root password=tritran123"
+    dest: /root/.my.cnf
+
+- name: start mariadb service
+  service: name=mariadb state=started

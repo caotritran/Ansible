@@ -1,0 +1,17 @@
+- name: LAMP install Apache + PHP 7.2 + Mariadb + Redis
+  hosts: appgroup
+  become: yes
+  become_method: sudo
+  
+  roles:
+    - dependencies
+    - apache
+    - php72
+    - mariadb
+    - redis
+
+  tasks:
+    - name: reboot all server
+      reboot:
+        reboot_timeout: 3600
+

@@ -1,0 +1,12 @@
+<?php
+	$redis = new Redis();
+	$redis->connect('127.0.0.1', 6379);
+	try {
+    		$redis->ping();
+	} catch(RedisException $e) {
+    		echo 'Error: ' .  $e->getMessage();
+    		exit;
+	}
+
+	echo 'Server is running';
+?>
