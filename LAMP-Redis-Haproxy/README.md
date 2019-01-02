@@ -6,7 +6,7 @@ About LAMP:
 - PHP ver 7.2
 
 Model:
-
+'''
        |
 -------+-----------------------------------------------
        |
@@ -17,7 +17,8 @@ Model:
  |  HAProxy  |     |  Web Server  |     |  Web Server  |
  |           |     |  LAMP + Redis|     |  LAMP + Redis|
  +-----------+     +--------------+     +--------------+
- 
+'''
+
 Usage: `ansible-playbook -i hosts main.yml`
 
 Note: file hosts You must edit match with Your puspose.
