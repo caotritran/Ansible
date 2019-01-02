@@ -1,0 +1,36 @@
+- name: install dependencies
+  hosts: all
+  become: yes
+  become_method: sudo
+  
+  roles:
+    - dependencies
+
+- name: install LAMP + Redis
+  hosts: appgroup
+  become: yes
+  become_method: sudo
+
+  roles:
+    - apache
+    - php72
+    - mariadb
+    - redis
+
+- name: install haproxy
+  hosts: loadbalance
+  become: yes
+  become_method: sudo
+
+  roles:
+    - haproxy
+
+- hosts: all
+  become: yes
+  become_method: sudo
+
+  tasks:
+  - name: reboot all server
+    reboot:
+      reboot_timeout: 3600
+

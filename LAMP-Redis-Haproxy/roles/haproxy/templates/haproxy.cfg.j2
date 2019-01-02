@@ -1,0 +1,67 @@
+# create new
+ global
+      # for logging section
+    log         127.0.0.1 local2 info
+    chroot      /var/lib/haproxy
+    pidfile     /var/run/haproxy.pid
+      # max per-process number of connections
+    maxconn     256
+    tune.ssl.default-dh-param 2048
+      # process' user and group
+    user        haproxy
+    group       haproxy
+      # makes the process fork into background
+    daemon
+
+defaults
+      # running mode
+    mode               http
+      # use global settings
+    log                global
+      # get HTTP request log
+    option             httplog
+      # timeout if backends do not reply
+    timeout connect    10s
+      # timeout on client side
+    timeout client     30s
+      # timeout on server side
+    timeout server     30s
+
+# define frontend ( set any name for "http-in" section )
+frontend http-in
+      # listen 80
+    bind *:80
+    #bind *:443 ssl crt /etc/pki/tls/certs/haproxy.pem no-tls-tickets ciphers ECDHE-RSA-AES128-GCM-SHA256:ECDHE-RSA-AES256-GCM-SHA384:ECDHE-RSA-AES128-SHA256:ECDHE-RSA-AES128-SHA:ECDHE-RSA-AES256-SHA384:ECDHE-RSA-AES256-SHA:ECDHE-RSA-RC4-SHA:AES128-GCM-SHA256:AES256-GCM-SHA384:AES128-SHA256:AES128-SHA:AES256-SHA256:AES256-SHA:RC4-SHA
+
+      # set default backend
+    default_backend    backend_servers
+      # send X-Forwarded-For header
+    option             forwardfor
+
+    #ACL
+    #acl block_ips src 192.168.1.96
+    #tcp-request connection reject if !block_ips
+
+    #statistics
+    # enable statistics reports
+    stats enable
+    # auth info for statistics site
+    stats auth admin:admin
+    # hide version of HAProxy
+    stats hide-version
+    # display HAProxy hostname
+    stats show-node
+    # refresh time
+    stats refresh 60s
+    # statistics reports' URI
+    stats uri /haproxy?stats
+
+# define backend
+backend backend_servers
+      # balance with roundrobin
+    balance            roundrobin
+      # define backend servers
+    #redirect scheme https if !{ ssl_fc }
+    #cookie SRVNAME insert
+    server             www01 {{ web1 }}:80 cookie S1 check
+    server             www02 {{ web2 }}:80 cookie S2 check

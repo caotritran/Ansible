@@ -1,0 +1,44 @@
+---
+- name: install redis service
+  yum: name=redis state=present
+
+- name: download redis extension php
+  git:
+    repo: https://github.com/phpredis/phpredis.git
+    dest: /root/phpredis
+
+- name: prepare evironment compile redis extension
+  command: phpize
+  args:
+    chdir: /root/phpredis
+
+- name: configure redis php
+  command: ./configure
+  args:
+    chdir: /root/phpredis
+
+- name: make install redis extension
+  shell: make && make install
+  args:
+    chdir: /root/phpredis
+  notify: restart httpd servcie
+
+- name: add config to file
+  lineinfile:
+    path: /etc/php.ini
+    line: 'extension=redis.so'
+  notify: restart httpd servcie
+
+- name: create file check redis running
+  template:
+    src: check.php.j2
+    dest: /var/www/html/check.php
+
+- name: create file php info
+  template:
+    src: info.php.j2
+    dest: /var/www/html/info.php
+
+- name: start redis service
+  service: name=redis state=started enabled=yes
+

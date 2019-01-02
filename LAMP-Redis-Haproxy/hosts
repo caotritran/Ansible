@@ -1,0 +1,6 @@
+[appgroup]
+appserver1
+appserver2
+
+[loadbalance]
+dbserver
