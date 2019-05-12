@@ -23,8 +23,8 @@ server_name: hungtran.net
 
 
 mysql_pass_root: 123123123
-mysql_database: phuongmai_data
-mysql_user: phuongmai_user
+mysql_database: tritran_data
+mysql_user: tritran_user
 mysql_pass: 123123
 
 #mysql_database: hungtran_data
