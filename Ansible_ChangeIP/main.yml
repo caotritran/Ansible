@@ -1,0 +1,8 @@
+- name: Change IP local
+  hosts: appgroup
+  become: yes
+  become_method: sudo
+  
+  roles:
+          #- ChangeIP
+    - Enable_Gateway

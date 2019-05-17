@@ -1,0 +1,28 @@
+---
+- name: Get variable is IP on remote host
+  shell: hostname -I | awk '{print $1}' | sed "s/\./\\\. /g" | awk '{print $4}'
+  register: ipnumber
+ 
+- name: viewing the contents
+  debug: msg="{{ ipnumber.stdout }}"
+
+- name: chattr file resolv.conf
+  command: chattr +i /etc/resolv.conf
+
+- name: copy file network card eth1
+  template:
+    src: ifcfg-eth1.j2
+    dest: /etc/sysconfig/network-scripts/ifcfg-eth1
+    owner: root
+    group: root
+    mode: 644
+  
+- name: replace IP in card eth1
+  lineinfile:
+    path: /etc/sysconfig/network-scripts/ifcfg-eth1
+    regexp: '^IPADDR='
+    line: IPADDR=172.16.100.{{ ipnumber.stdout }}
+
+- name: re chattr file resolv.conf
+  command: chattr -i /etc/resolv.conf
+
