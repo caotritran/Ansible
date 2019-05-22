@@ -1,0 +1,16 @@
+---
+- name: create folder .ssh
+  file:
+    path: /home/{{ user_name }}/.ssh
+    state: directory
+    owner: "{{ user_name }}"
+    group: "{{ user_name }}"
+    mode: 0700
+
+- name: copy authorized_keys to remote host
+  copy:
+    src: authorized_keys
+    dest: /home/{{ user_name }}/.ssh/authorized_keys
+    owner: "{{ user_name }}"
+    group: "{{ user_name }}"
+    mode: 0600

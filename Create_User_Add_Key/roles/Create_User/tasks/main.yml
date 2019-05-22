@@ -1,0 +1,7 @@
+---
+- name: create user
+  user:
+    name: "{{ user_name }}"
+    shell: /bin/bash
+    groups: wheel
+    append: yes
