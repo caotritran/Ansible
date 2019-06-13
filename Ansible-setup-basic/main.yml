@@ -1,0 +1,19 @@
+- name: install basic for new VMs
+  hosts: all
+
+  #vars_prompt:
+  #- name: "ansible_sudo_pass"
+  #  prompt: "Type sudo password"
+  #  private: yes
+  
+  become: yes
+  become_method: sudo
+
+  roles:
+    - basics
+    - zabbix
+
+  tasks:
+    - name: reboot all server
+      reboot:
+        reboot_timeout: 3600

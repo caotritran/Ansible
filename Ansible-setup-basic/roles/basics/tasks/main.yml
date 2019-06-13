@@ -1,0 +1,41 @@
+---
+- name: update all package
+  yum: name="*" state=latest
+
+- name: Install epel package
+  yum:
+    name:
+      - epel-release
+    state: present
+- name: Install base package
+  yum:
+    name:
+      - npm
+      - iptraf
+      - nmap-ncat
+      - jq
+      - net-tools
+      - telnet
+    state: present
+
+- name: Set timezone to UTC
+  timezone:
+    name: UTC
+
+- name: Change sudo permission for zabbix
+  lineinfile:
+    path: /etc/sudoers
+    state: present
+    line: "{{ item.line }}"
+  with_items:
+    - {line: "zabbix  ALL=(ALL)  NOPASSWD: /bin/pm2-zabbix"}
+    - {line: "zabbix  ALL=(ALL)  NOPASSWD: /bin/curl"}
+    - {line: "zabbix  ALL=(ALL)  NOPASSWD: /bin/cat"}
+
+- name: change sysctl config file
+  template:
+    src: sysctl.conf
+    dest: /etc/sysctl.conf
+    backup: yes
+
+
