@@ -1,0 +1,3 @@
+[appgroup]
+#appserver1 ansible_ssh_host=104.207.151.59 ansible_ssh_port=22 ansible_ssh_user=root ansible_ssh_pass="7-LcQ.mo${E!v_g7"
+appserver2 ansible_ssh_host=45.32.35.120 ansible_ssh_port=22 ansible_ssh_user=root ansible_ssh_pass="Y2,bE{gZN8_k?L]L"
