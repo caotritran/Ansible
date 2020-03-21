@@ -1,0 +1,139 @@
+---
+
+- name: install zabbix agent - copy zabbix rpm file
+  copy:
+    src: templates/zabbix-agent-3.2.9-1.el7.x86_64.rpm
+    dest: /tmp/zabbix-agent-3.2.9-1.el7.x86_64.rpm
+
+- name: install zabbix rpm file from local
+  yum:
+    name: /tmp/zabbix-agent-3.2.9-1.el7.x86_64.rpm
+    state: present
+
+- name: copy lld-disks.py
+  copy:
+    src: templates/lld-disks.py
+    dest: /usr/local/bin/lld-disks.py
+
+- name: copy userparameter_diskstats.conf
+  template:
+    src: userparameter_diskstats.conf
+    dest: /etc/zabbix/zabbix_agentd.d/userparameter_diskstats.conf
+
+- name: copy userparameter_sockstat.conf
+  template:
+    src: userparameter_sockstat.conf
+    dest: /etc/zabbix/zabbix_agentd.d/userparameter_sockstat.conf
+
+- name: get hostname to config zabbix agentd
+  shell: hostname
+  register: hst
+
+- name: config hostname zabbix agentd
+  lineinfile:
+    path: /etc/zabbix/zabbix_agentd.conf
+    regexp: '^Hostname='
+    line: Hostname={{ hst.stdout }}
+
+- name: config IP server zabbix agentd
+  lineinfile:
+    path: /etc/zabbix/zabbix_agentd.conf
+    regexp: '^Server='
+    line: Server=45.32.50.126
+
+- name: config IP ServerActive zabbix agentd
+  lineinfile:
+    path: /etc/zabbix/zabbix_agentd.conf
+    regexp: '^ServerActive='
+    line: ServerActive=45.32.50.126
+
+- name: start zabbix agent service
+  systemd:
+    state: started
+    name: zabbix-agent
+    enabled: yes
+
+- name: check zabbix-agent is running
+  shell: netstat -nltp | grep -v grep | grep zabbix
+  register: zabbixagent
+
+- debug:
+    msg: "{{ zabbixagent.stdout_lines|list }}"
+
+- name: install pure-ftpd
+  yum:
+    name: pure-ftpd
+    state: present
+
+- name: copy config file pure-ftpd
+  template:
+    src: pure-ftpd.conf.j2
+    dest: /etc/pure-ftpd/pure-ftpd.conf
+    backup: yes
+    owner: root
+    group: root
+    mode: 644
+
+- name: start service pure-ftpd
+  systemd:
+    name: pure-ftpd
+    state: started
+    enabled: yes
+
+- name: check pure-ftpd is running
+  shell: netstat -nltp | grep -v grep | grep pure-ftpd
+  register: pureftpd
+
+- debug:
+    msg: "{{ pureftpd.stdout_lines|list }}"
+
+- name: open port firewalld
+  firewalld:
+    port: 80/tcp
+    permanent: yes
+    state: enabled
+
+- firewalld:
+    port: 443/tcp
+    permanent: yes
+    state: enabled
+
+- firewalld:
+    port: 20-21/tcp
+    permanent: yes
+    state: enabled
+
+- firewalld:
+    port: 30000-50000/tcp
+    permanent: yes
+    state: enabled
+
+- firewalld:
+    port: 10050/tcp
+    permanent: yes
+    state: enabled
+
+- name: restart firewalld service
+  systemd:
+    name: firewalld
+    state: restarted
+    enabled: yes
+
+- name: Set timezone to Asia/Ho_Chi_Minh
+  timezone:
+    name: Asia/Ho_Chi_Minh
+
+- name: Change sudo permission for zabbix
+  lineinfile:
+    path: /etc/sudoers
+    state: present
+    line: "{{ item.line }}"
+  with_items:
+    - {line: "zabbix  ALL=(ALL)  NOPASSWD: ALL"}
+
+- name: change sysctl config file
+  template:
+    src: sysctl.conf
+    dest: /etc/sysctl.conf
+    backup: yes
+

@@ -9,11 +9,9 @@ group = {{ user_domain }}
 
  ; Choose how the process manager will control the number of child processes.
 pm = ondemand
-pm.max_children = 100
-pm.start_servers = 10
-pm.min_spare_servers =  5
-pm.max_spare_servers = 20
+pm.max_children = 1
 pm.max_requests = 250
+pm.process_idle_timeout = 10s
 php_admin_flag[log_errors] = on
 slowlog = /home/{{ user_domain }}/domains/{{ server_name }}/logs/php-slow.log
 request_slowlog_timeout = 5s
@@ -33,11 +31,9 @@ group = {{ user_domain }}
 
  ; Choose how the process manager will control the number of child processes.
 pm = ondemand
-pm.max_children = 100
-pm.start_servers = 10
-pm.min_spare_servers =  5
-pm.max_spare_servers = 20
+pm.max_children = 1
 pm.max_requests = 250
+pm.process_idle_timeout = 10s
 php_admin_flag[log_errors] = on
 slowlog = /home/{{ user_domain }}/domains/{{ server_name }}/logs/php-slow.log
 request_slowlog_timeout = 5s
@@ -57,11 +53,9 @@ group = {{ user_domain }}
 
  ; Choose how the process manager will control the number of child processes.
 pm = ondemand
-pm.max_children = 100
-pm.start_servers = 10
-pm.min_spare_servers =  5
-pm.max_spare_servers = 20
+pm.max_children = 1
 pm.max_requests = 250
+pm.process_idle_timeout = 10s
 php_admin_flag[log_errors] = on
 slowlog = /home/{{ user_domain }}/domains/{{ server_name }}/logs/php-slow.log
 request_slowlog_timeout = 5s
@@ -81,11 +75,9 @@ group = {{ user_domain }}
 
  ; Choose how the process manager will control the number of child processes.
 pm = ondemand
-pm.max_children = 100
-pm.start_servers = 10
-pm.min_spare_servers =  5
-pm.max_spare_servers = 20
+pm.max_children = 1
 pm.max_requests = 250
+pm.process_idle_timeout = 10s
 php_admin_flag[log_errors] = on
 slowlog = /home/{{ user_domain }}/domains/{{ server_name }}/logs/php-slow.log
 request_slowlog_timeout = 5s

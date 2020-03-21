@@ -39,7 +39,7 @@
   shell: make && make install
   args:
     chdir: '{{source_dir}}/{{ nginx_name }}'
-  when: nginx_configure|changed
+  #when: nginx_configure|changed
 
 - name: create user system nginx
   command: useradd -r nginx
@@ -52,7 +52,7 @@
     group: root
 
 - name: create folder temp
-  shell: mkdir -p /var/cache/nginx
+  shell: mkdir -p /etc/nginx/cache/
 
 - name: start Nginx Service
   service: name=nginx state=started enabled=yes

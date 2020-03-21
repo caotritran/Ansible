@@ -42,10 +42,18 @@
     path: /opt/{{ php_name }}/etc/php-fpm.conf
     line: include=/opt/{{ php_name }}/etc/php-fpm.d/*.conf
 
+- name: Insert configuration block in /opt/php-*/etc/php-fpm.conf
+  blockinfile:
+    path: /opt/{{ php_name }}/etc/php-fpm.conf
+    block: |
+      emergency_restart_threshold = 10
+      emergency_restart_interval = 1m
+      process_control_timeout = 10s
+
 - name: copy start service file
   template:
     src: php7-fpm.service.j2
-    dest: /lib/systemd/system/php7-fpm.service
+    dest: /lib/systemd/system/php72-fpm.service
 
 - name: create PHP pool handle socket
   template:
@@ -74,4 +82,4 @@
     - template-phpfpm
 
 - name: start php-fpm service
-  service: name=php7-fpm state=started enabled=yes
+  service: name=php72-fpm state=started enabled=yes

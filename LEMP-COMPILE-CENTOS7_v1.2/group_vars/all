@@ -13,12 +13,13 @@ php_name: php-7.2.18
 source_dir: /root/src
 host_pass: 123123123
 user_ngx: nginx
-user_domain: motorstore
-group_domain: motorstore
-server_name: motorstore.vn
+user_domain: demo
+group_domain: demo
+server_name: demo.syslife.info
 
-mysql_pass_root: eCy9FiAjdImv
-mysql_database: motorstore_data
-mysql_user: motorstore_user
-mysql_pass: vfKsmototoregdo
+
+mysql_pass_root: eCy9FiGIOWsdImv
+mysql_database: demo_data
+mysql_user: demo_user
+mysql_pass: vPuiSysflifeorysF
 
