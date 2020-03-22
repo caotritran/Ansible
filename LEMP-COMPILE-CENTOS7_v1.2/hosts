@@ -1,8 +1,2 @@
 [appgroup]
-#unixhouse	ansible_ssh_host=149.28.156.26 ansible_ssh_port=22 ansible_ssh_user=root ansible_ssh_pass="k3V%rj+qVCc{fAx+"
-#104.207.151.59	ansible_ssh_pass="7-LcQ.mo${E!v_g7"
-#syslife		ansible_ssh_host=103.130.218.7 ansible_ssh_port=22 ansible_ssh_user=root ansible_ssh_pass="#&#W$Y%0O#Q$"
-#lepinworld		ansible_ssh_host=111.90.147.11 ansible_ssh_port=44200 ansible_ssh_user=root ansible_ssh_pass="ZI#Us@*q2cAp"
-#163.44.192.28
-#149.28.144.77
-103.130.218.6
+172.16.100.6
