@@ -10,16 +10,17 @@ nginx_name: nginx-1.15.6
 php7: php-7.2.18.tar.gz
 php_name: php-7.2.18
 
+
 source_dir: /root/src
 host_pass: 123123123
 user_ngx: nginx
-user_domain: demo
-group_domain: demo
-server_name: demo.syslife.info
+user_domain: ghibli
+group_domain: ghibli
+server_name: ghibli-shop.com
 
 
-mysql_pass_root: eCy9FiGIOWsdImv
-mysql_database: demo_data
-mysql_user: demo_user
-mysql_pass: vPuiSysflifeorysF
+mysql_pass_root: eCy9FiGIaarFsdImv
+mysql_database: ghibli_data
+mysql_user: ghibli_user
+mysql_pass: vchasughiblisF
 

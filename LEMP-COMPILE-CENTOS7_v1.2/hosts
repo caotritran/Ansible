@@ -5,4 +5,23 @@
 #lepinworld		ansible_ssh_host=111.90.147.11 ansible_ssh_port=44200 ansible_ssh_user=root ansible_ssh_pass="ZI#Us@*q2cAp"
 #163.44.192.28
 #149.28.144.77
-103.130.218.6
+#103.130.218.6
+#149.28.155.61
+
+#sweb-9		ansible_ssh_host=45.77.174.119 ansible_ssh_port=22 ansible_ssh_user=root ansible_ssh_pass="3w{WM[bennZ7e88x"
+#sweb-10		ansible_ssh_host=45.32.42.148 ansible_ssh_port=22 ansible_ssh_user=root ansible_ssh_pass="?v7J#Rn)hxJ5!KsS"
+#sweb-11		ansible_ssh_host=199.247.19.195 ansible_ssh_port=7676 ansible_ssh_user=root ansible_ssh_pass="V9[cd(?qWSyNwck8"
+
+#sweb-12		ansible_ssh_host=104.156.239.151 ansible_ssh_port=22 ansible_ssh_user=root ansible_ssh_pass="?L1mK)}.Dqc*u6AM"
+
+#sweb-13		ansible_ssh_host=45.63.121.254 ansible_ssh_port=22 ansible_ssh_user=root ansible_ssh_pass="sC*5t}reJr3[z_hU"
+
+#sweb-14		ansible_ssh_host=157.245.92.54 ansible_ssh_port=7676 ansible_ssh_user=root ansible_ssh_pass="NPHoJ4zBpi8T"
+#sweb-15		ansible_ssh_host=157.245.187.210 ansible_ssh_port=22 ansible_ssh_user=root ansible_ssh_pass="Ow3reith"
+
+#up-beat		ansible_ssh_host=54.169.161.124 ansible_ssh_port=22 ansible_ssh_user=upbeat ansible_ssh_pass="June2018" ansible_sudo_pass="June2018"
+#sweb-16		ansible_ssh_host=45.252.248.149 ansible_ssh_port=22 ansible_ssh_user=root ansible_ssh_pass="DL2pl7qSNvGy8esb"
+
+
+152.44.32.78	ansible_ssh_pass="98p576h5" ansible_ssh_user=root
+

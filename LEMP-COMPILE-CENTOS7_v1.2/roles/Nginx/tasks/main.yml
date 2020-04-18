@@ -43,6 +43,7 @@
 
 - name: create user system nginx
   command: useradd -r nginx
+  ignore_errors: yes
 
 - name: create starup service file
   copy:
@@ -51,8 +52,11 @@
     owner: root
     group: root
 
-- name: create folder temp
+- name: create folder cache
   shell: mkdir -p /etc/nginx/cache/
+
+- name: create folder temp
+  shell: mkdir -p /var/cache/nginx/client_temp
 
 - name: start Nginx Service
   service: name=nginx state=started enabled=yes

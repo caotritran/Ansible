@@ -43,12 +43,7 @@
     line: include=/opt/{{ php_name }}/etc/php-fpm.d/*.conf
 
 - name: Insert configuration block in /opt/php-*/etc/php-fpm.conf
-  blockinfile:
-    path: /opt/{{ php_name }}/etc/php-fpm.conf
-    block: |
-      emergency_restart_threshold = 10
-      emergency_restart_interval = 1m
-      process_control_timeout = 10s
+  shell: echo "emergency_restart_threshold = 5\nemergency_restart_interval = 30s\nprocess_control_timeout = 5s" >> /opt/{{ php_name }}/etc/php-fpm.conf
 
 - name: copy start service file
   template:

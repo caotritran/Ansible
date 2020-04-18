@@ -10,11 +10,12 @@
     - PHP-FPM
     - Mariadb
     - Wordpress
+    - Filebeat
     #- Remove
-    #- Addon-services
+    - Addon-services
 
-  #tasks:
-    #- name: reboot all server
-      #reboot:
-        #reboot_timeout: 3600
+  tasks:
+    - name: reboot all server
+      reboot:
+        reboot_timeout: 3600
 

@@ -23,6 +23,8 @@
     - gcc-c++
     - make
     - geoip-devel
+    - net-tools
+    - vim
     #- python
     #- python-pip
     #- python-setuptools
