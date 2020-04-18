@@ -1,4 +1,5 @@
 [appgroup]
+<<<<<<< HEAD
 #unixhouse	ansible_ssh_host=149.28.156.26 ansible_ssh_port=22 ansible_ssh_user=root ansible_ssh_pass="k3V%rj+qVCc{fAx+"
 #104.207.151.59	ansible_ssh_pass="7-LcQ.mo${E!v_g7"
 #syslife		ansible_ssh_host=103.130.218.7 ansible_ssh_port=22 ansible_ssh_user=root ansible_ssh_pass="#&#W$Y%0O#Q$"
@@ -25,3 +26,6 @@
 
 152.44.32.78	ansible_ssh_pass="98p576h5" ansible_ssh_user=root
 
+=======
+172.16.100.6
+>>>>>>> ace1a40641f920e4f3cdca70bc365f089ee58df3
