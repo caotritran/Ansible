@@ -14,12 +14,12 @@ php_name: php-7.2.18
 source_dir: /root/src
 host_pass: 123123123
 user_ngx: nginx
-user_domain: mocbrickland
-group_domain: mocbrickland
-server_name: mocbrickland.com
+user_domain: a
+group_domain: a
+server_name: a.com
 
 
 mysql_pass_root: eCy9FiGIaarFsdImv
-mysql_database: mocbrickland_data
-mysql_user: mocbrickland_user
-mysql_pass: vlepimocbricklanddlu
+mysql_database: a_data
+mysql_user: a_user
+mysql_pass: 1111111111
