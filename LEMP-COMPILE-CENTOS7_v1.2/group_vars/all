@@ -14,13 +14,12 @@ php_name: php-7.2.18
 source_dir: /root/src
 host_pass: 123123123
 user_ngx: nginx
-user_domain: ghibli
-group_domain: ghibli
-server_name: ghibli-shop.com
+user_domain: mocbrickland
+group_domain: mocbrickland
+server_name: mocbrickland.com
 
 
 mysql_pass_root: eCy9FiGIaarFsdImv
-mysql_database: ghibli_data
-mysql_user: ghibli_user
-mysql_pass: vchasughiblisF
-
+mysql_database: mocbrickland_data
+mysql_user: mocbrickland_user
+mysql_pass: vlepimocbricklanddlu
