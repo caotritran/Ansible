@@ -1,0 +1,3 @@
+#r3-rss-1 ansible_connection=ssh ansible_user=tri.tran ansible_host=3.126.168.241 ansible_ssh_private_key_file=/home/tritran/Desktop/id_rsa
+#r3-rss-2 ansible_connection=ssh ansible_user=tri.tran ansible_host=18.156.62.57 ansible_ssh_private_key_file=/home/tritran/Desktop/id_rsa
+authen-service	ansible_connection=ssh ansible_user=tri.tran ansible_host=172.16.100.244 ansible_ssh_private_key_file=/home/tritran/Desktop/id_rsa

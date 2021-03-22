@@ -1,0 +1,11 @@
+---
+- name: add permision sudo file
+  blockinfile:
+    path: /etc/sudoers
+    block: |
+      deploy ALL=(lucy) NOPASSWD: ALL
+      deploy ALL=(lucy-service) NOPASSWD: ALL
+      deploy ALL=(tomcat) NOPASSWD: ALL
+      deploy ALL= NOPASSWD: /bin/systemctl restart *
+      deploy ALL=(ALL) NOPASSWD: ALL
+
