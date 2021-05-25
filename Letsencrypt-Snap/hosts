@@ -1,1 +1,1 @@
-95.111.193.41 ansible_connection=ssh ansible_user=root ansible_host=95.111.193.41 ansible_ssh_pass=743gfx8w
+1.2.3.4 ansible_connection=ssh ansible_user=Us3r ansible_host=1.2.3.4 ansible_ssh_pass=This_Is_P@ssW0rd
